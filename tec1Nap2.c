@@ -1,6 +1,39 @@
 #include <stdio.h>
 #include <locale.h>
 
+void mostraLinha();
+int verificaEscolha(int numeroEscolhas);
+void exibeStatusAtual();
+void atualizaStatusCS();
+void tutorial();
+void primeiroPlaneta();
+
+int escolha;
+	
+// Número Inicial de Sondas e combustível
+int sondas = 5;
+int combustivel = 100;
+	
+// Variáveis onde 0 = False e 1 = True
+int perdeu = 0;
+int possuiCombustivel = 1;
+int possuiSondas = 1;
+
+void main(){
+	
+	// Função que permite o uso de acentos e "ç" nos textos
+	setlocale(LC_ALL,"");
+	
+	//Exibe o tutorial e um texto base para iniciar o jogo
+	tutorial();
+	mostraLinha();
+	
+	//Início do RPG
+	primeiroPlaneta();
+	
+	
+}
+
 // Função que dá um printf em 60 "=" para ajudar na divisão de sessões de textos
 void mostraLinha(){
 	printf("============================================================\n");
@@ -28,6 +61,37 @@ int verificaEscolha(int numeroEscolhas){
 	return escolha;
 }
 
+// Função que exibe a barra de combustível e sondas restantes  
+void exibeStatusAtual(){
+	int c;
+	printf("Status Atual: \n");
+	// Exibição do combustível em uma "barra"
+	printf("Combustível: ");
+	for(c = 0; c <= combustivel; c += 5){
+		printf("|");
+	}
+	printf(" %d%% \n", combustivel);
+	printf("Sondas: %d \n", sondas);
+}
+
+// Função para atualizar se ainda há combustível ou sondas disponíveis
+void atualizaStatusCS(){
+	// Atualiza situação das sondas
+	if(sondas > 0){
+		int possuiSondas = 1;
+	}
+	else{
+		int possuiSondas = 0;
+	}
+	// Atualiza situação do combustível
+	if(combustivel > 0){
+		int possuiCombustivel = 1;
+	}
+	else{
+		int possuiCombustivel = 0;
+	}
+}
+
 // Função para exibir uma contextualização inicial e um tutorial simples
 void tutorial(){
 	
@@ -48,24 +112,50 @@ void tutorial(){
 	printf("Te desejo boa sorte em sua aventura!\n");
 } 
 
+// Função para exibir o encontro do primeiro planeta
+void primeiroPlaneta(){
+	// Texto base
+	printf("A Arca sai em viagem ao espaço, pouco depois o planeta Terra colapsa devido a \n");
+	printf("instabilidades em seu núcleo, enquanto observa a catástrofe você vai se afastando \n");
+	printf("cada vez mais do sistema solar até o sol se tornar apenas mais um ponto \n");
+	printf("como qualquer outra estrela na imensidão do espaço sideral. \n");
+	printf("\n");
+	printf("Após um bom tempo de viagem o primeiro candidato a 'lar' surge. \n");
+	printf("O planeta vermelho parece ser coberto por uma névoa em toda sua superfície, \n");
+	printf("é possível observar ao seu redor anéis de gelo e rochas, assim como uma lua próxima com \n");
+	printf("uma cratera massiva, provavelmente os anéis desse planeta são os destroços \n");
+	printf("do impacto que acertou seu satélite. \n");
+	printf("\n");
+	// Interação com o jogador
+	do{
+		exibeStatusAtual();
+		printf("Você observa o planeta e começa a calcular qual a melhor decisão: \n");
+		printf("1) Pousar nesse Planeta. \n");
+		printf("2) Enviar uma sonda para obter mais informações. \n");
+		printf("3) Seguir a viagem e procurar por outro planeta. \n");
+		escolha = verificaEscolha(3);
 
-void main(){
-	int escolha;
-	// Número Inicial de Sondas e combustível
-	int sondas = 5;
-	int combustivel = 100;
-	
-	// Variáveis onde 0 = False e 1 = True
-	int possuiCombustivel = 1;
-	int possuiSondas = 1;
-	
-	// Função que permite o uso de acentos e "ç" nos textos
-	setlocale(LC_ALL,"");
-	
-	//Exibe o tutorial e um texto base para iniciar o jogo
-	tutorial();
-	mostraLinha();
-	
-	//Início do RPG
-	
+		if(escolha == 2){
+			if(possuiSondas == 1){
+				printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
+				sondas -= 1;
+				atualizaStatusCS();
+				printf("A sonda consegue as seguintes informações: \n");
+				printf("-Planeta geologicamente estável. \n");
+				printf("-Não há sinais de oxigênio. \n");
+				printf("-Superfície com altos índices de toxicidade por enxofre.");
+				printf("Fim do relatório... \n");
+			}
+			else{
+				printf("Você não tem mais sondas disponíveis! \n");
+			}
+		}
+	}while(escolha == 2);
+	if(escolha == 1){
+		printf("A nave pousa no planeta e descongela os tripulantes. \n");
+		printf("No momento em que eles saem para fora da nave todos começam \n");
+		printf("a se sentirem asfixiados ou intoxicados e nenhum sobrevive. \n");
+		perdeu = 1;
+	}
 }
+
