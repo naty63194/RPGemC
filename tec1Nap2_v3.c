@@ -113,9 +113,9 @@ void atualizaStatusCS(){
 	}
 	else{
 		mostraLinha();
-			printf("SEU COMBUSTÍVEL ACABOU! \n");
-			mostraLinha();
-			vocePerdeu();
+		printf("SEU COMBUSTÍVEL ACABOU! \n");
+		mostraLinha();
+		vocePerdeu();
 	}
 }
 
