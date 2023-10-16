@@ -233,6 +233,6 @@ void evento03(){
   if(escolha == 0){
       printf("A nave pousa no planeta e descongela os tripulantes. \n");
       printf("No momento do pouso um onda gigantesca atinge a nave e todos os tripulantes morrem \n");
-      vocePerdeu;
+      vocePerdeu();
     }
 }
