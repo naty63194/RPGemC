@@ -256,7 +256,7 @@ void evento02(){
 	else if(escolha == 1){
 		printf("Após seu processador chegar no limite de temperatura a conclusão foi \n");
 		printf("que o melhor a se fazer é dar a volta em segurança e respeitar \n");
-		printf("os avisos. ");
+		printf("os avisos. \n");
 		gastaCombustivel(10);
 		atualizaStatusCS();
 	}
