@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
 void evento05(){
     // Declaração da variável para o upgrade
     int opcao;
