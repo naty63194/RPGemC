@@ -1,20 +1,26 @@
 #include <stdio.h>
 #include <locale.h>
 
+// Declaração das funções
 void mostraLinha();
 int verificaEscolha(int numeroEscolhas);
 void exibeStatusAtual();
 void atualizaStatusCS();
+void vocePerdeu();
 void tutorial();
-void primeiroPlaneta();
+void evento01();
+void evento02();
 
+
+// Variáveis Globais
 int escolha;
 	
-// Número Inicial de Sondas e combustível
+// Número Inicial de sondas e combustível
 int sondas = 5;
 int combustivel = 100;
 	
 // Variáveis onde 0 = False e 1 = True
+int jogar = 1;
 int perdeu = 0;
 int possuiCombustivel = 1;
 int possuiSondas = 1;
@@ -28,15 +34,24 @@ void main(){
 	tutorial();
 	mostraLinha();
 	
-	//Início do RPG
-	primeiroPlaneta();
-	
+	// Loop do jogo
+	while(jogar == 1){
+		perdeu = 0;
+		//Início do RPG
+		evento01();
+		if(perdeu == 0){
+			evento02();
+		}
+	}
+	printf("FIM");
 	
 }
 
-// Função que dá um printf em 60 "=" para ajudar na divisão de sessões de textos
+
+//Definição das funções
+// Função que dá um printf em 70 "=" para ajudar na divisão de sessões de textos
 void mostraLinha(){
-	printf("============================================================\n");
+	printf("======================================================================\n");
 }
 
 // Função pra pedir as escolhas do usuário no decorrer do RPG
@@ -51,7 +66,7 @@ int verificaEscolha(int numeroEscolhas){
 	// Verifica se é uma opção válida
 	// Caso seja inválida pede novamente até uma opção válida ser inserida
 	// Caso seja válida retorna a escolha
-	if((escolha < 1) || (escolha > numeroEscolhas)){
+	if((escolha < 0) || (escolha > numeroEscolhas)){
 		do{
 			printf("Opção inválida! Tente Novamente. \n");
 			printf("Sua escolha: ");
@@ -64,6 +79,7 @@ int verificaEscolha(int numeroEscolhas){
 // Função que exibe a barra de combustível e sondas restantes  
 void exibeStatusAtual(){
 	int c;
+	mostraLinha();
 	printf("Status Atual: \n");
 	// Exibição do combustível em uma "barra"
 	printf("Combustível: ");
@@ -72,24 +88,43 @@ void exibeStatusAtual(){
 	}
 	printf(" %d%% \n", combustivel);
 	printf("Sondas: %d \n", sondas);
+	printf("\n");
 }
 
 // Função para atualizar se ainda há combustível ou sondas disponíveis
 void atualizaStatusCS(){
 	// Atualiza situação das sondas
 	if(sondas > 0){
-		int possuiSondas = 1;
+		possuiSondas = 1;
 	}
 	else{
-		int possuiSondas = 0;
+		possuiSondas = 0;
 	}
 	// Atualiza situação do combustível
 	if(combustivel > 0){
-		int possuiCombustivel = 1;
+		possuiCombustivel = 1;
 	}
 	else{
-		int possuiCombustivel = 0;
+		possuiCombustivel = 0;
 	}
+}
+
+// Exibe "Tela de derrota" + opção de jogar novamente
+void vocePerdeu(){
+	perdeu = 1;
+	mostraLinha();
+	printf(" ¦¦¦¦¦¦   ¦¦¦¦¦  ¦¦¦    ¦¦¦ ¦¦¦¦¦¦¦      ¦¦¦¦¦¦  ¦¦    ¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦ \n");
+	printf("¦¦       ¦¦   ¦¦ ¦¦¦¦  ¦¦¦¦ ¦¦          ¦¦    ¦¦ ¦¦    ¦¦ ¦¦      ¦¦   ¦¦ \n");
+	printf("¦¦   ¦¦¦ ¦¦¦¦¦¦¦ ¦¦ ¦¦¦¦ ¦¦ ¦¦¦¦¦       ¦¦    ¦¦ ¦¦    ¦¦ ¦¦¦¦¦   ¦¦¦¦¦¦ \n");
+	printf("¦¦    ¦¦ ¦¦   ¦¦ ¦¦  ¦¦  ¦¦ ¦¦          ¦¦    ¦¦  ¦¦  ¦¦  ¦¦      ¦¦   ¦¦ \n");
+	printf(" ¦¦¦¦¦¦  ¦¦   ¦¦ ¦¦      ¦¦ ¦¦¦¦¦¦¦      ¦¦¦¦¦¦    ¦¦¦¦   ¦¦¦¦¦¦¦ ¦¦   ¦¦ \n");
+	mostraLinha();
+	printf("Deseja jogar novamente? \n");
+	printf("Não [0] \n");
+	printf("Sim [1] \n");
+	jogar = verificaEscolha(1);
+	
+	
 }
 
 // Função para exibir uma contextualização inicial e um tutorial simples
@@ -113,7 +148,7 @@ void tutorial(){
 } 
 
 // Função para exibir o encontro do primeiro planeta
-void primeiroPlaneta(){
+void evento01(){
 	// Texto base
 	printf("A Arca sai em viagem ao espaço, pouco depois o planeta Terra colapsa devido a \n");
 	printf("instabilidades em seu núcleo, enquanto observa a catástrofe você vai se afastando \n");
@@ -125,17 +160,17 @@ void primeiroPlaneta(){
 	printf("é possível observar ao seu redor anéis de gelo e rochas, assim como uma lua próxima com \n");
 	printf("uma cratera massiva, provavelmente os anéis desse planeta são os destroços \n");
 	printf("do impacto que acertou seu satélite. \n");
-	printf("\n");
 	// Interação com o jogador
 	do{
 		exibeStatusAtual();
 		printf("Você observa o planeta e começa a calcular qual a melhor decisão: \n");
-		printf("1) Pousar nesse Planeta. \n");
-		printf("2) Enviar uma sonda para obter mais informações. \n");
-		printf("3) Seguir a viagem e procurar por outro planeta. \n");
-		escolha = verificaEscolha(3);
+		printf("0) Pousar nesse Planeta. \n");
+		printf("1) Enviar uma sonda para obter mais informações. \n");
+		printf("2) Seguir a viagem e procurar por outro planeta. \n");
+		escolha = verificaEscolha(2);
 
-		if(escolha == 2){
+		if(escolha == 1){
+			mostraLinha();
 			if(possuiSondas == 1){
 				printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
 				sondas -= 1;
@@ -143,19 +178,24 @@ void primeiroPlaneta(){
 				printf("A sonda consegue as seguintes informações: \n");
 				printf("-Planeta geologicamente estável. \n");
 				printf("-Não há sinais de oxigênio. \n");
-				printf("-Superfície com altos índices de toxicidade por enxofre.");
+				printf("-Superfície com altos índices de toxicidade por enxofre. \n");
 				printf("Fim do relatório... \n");
 			}
 			else{
 				printf("Você não tem mais sondas disponíveis! \n");
 			}
 		}
-	}while(escolha == 2);
-	if(escolha == 1){
+	}while(escolha == 1);
+	if(escolha == 0){
 		printf("A nave pousa no planeta e descongela os tripulantes. \n");
 		printf("No momento em que eles saem para fora da nave todos começam \n");
 		printf("a se sentirem asfixiados ou intoxicados e nenhum sobrevive. \n");
-		perdeu = 1;
+		vocePerdeu();
 	}
 }
 
+// Função para exibir evento dos asteróides
+void evento02(){
+	printf("Evento 02 \n");
+	vocePerdeu();
+}
