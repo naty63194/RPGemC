@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <locale.h>
+#include <windows.h>
+#include <time.h>
+#include <stdlib.h>
 
 // Declaração das funções
 void mostraLinha();
@@ -212,7 +215,52 @@ void evento01(){
 
 // Função para exibir evento dos asteróides
 void evento02(){
-	printf("Evento 02 \n");
+	//Texto base
+	printf("Após se afastar do último planeta, os radares da espaçonave detectam algo \n");
+	printf("estranho pela rota atual, possivelmente asteróides, porém, pode ser um alarme falso \n");
+	printf("que atrasará a viagem e consumirá mais recursos em caso de mudança de rota. \n");
+	
+	// Interação com o jogador
+	exibeStatusAtual();
+	printf("Tome uma decisão urgente! Você sente quantidade massiva de processamento sendo \n");
+	printf("utilizado para esse dilema. \n");
+	printf("0) Ignorar o aviso e seguir em frente. \n");
+	printf("1) Utilizar outro caminho e gastar +10%% de combustível. \n");
+	escolha = verificaEscolha(1);
+	
+	if(escolha == 0){
+		printf("Você ignora os aviso e segue em frente... \n");
+		printf("PÉSSIMA IDEIA, os asteróides eram reais!!! \n");
+		
+		// Inicializo o randomizador com o horário do sistema como seed
+		srand(time(NULL));
+		
+		// Variável que decide se sobrevive aos asteróides 50% de chance de sobreviver
+		int consegue = rand() % 2;
+		
+		// Não sobrevive
+		if(consegue == 0){
+			printf("Você tenta desviar dos milhares de detritos pelo caminho mas é acertado \n");
+			printf("em cheio por um deles, logo em seguida a nave entra em colapso e explode \n");
+			vocePerdeu();
+		}
+		// Sobrevive
+		else if(consegue == 1){
+			printf("Vários corpos rochosos surgem em sua frente, com seu alto poder \n");
+			printf("de processamento você realiza todos os calculos de desvios instântaneamente, \n");
+			printf("alguns deles causam arranhões na parte externa, mas nenhum resulta \n");
+			printf("em danos críticos aos seus sistemas e a nave sai quase que ilesa \n");
+			printf("desse perigo. Ufa, foi por pouco! \n");
+		}
+	}
+	else if(escolha == 1){
+		printf("Após seu processador chegar no limite de temperatura a conclusão foi \n");
+		printf("que o melhor a se fazer é dar a volta em segurança e respeitar \n");
+		printf("os avisos. ");
+		gastaCombustivel(10);
+		atualizaStatusCS();
+	}
+	
 }
 
 //Evento03: próximo planeta 
