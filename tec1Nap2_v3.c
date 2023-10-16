@@ -109,7 +109,10 @@ void atualizaStatusCS(){
 		possuiCombustivel = 1;
 	}
 	else{
-		possuiCombustivel = 0;
+		mostraLinha();
+			printf("SEU COMBUSTÍVEL ACABOU! \n");
+			mostraLinha();
+			vocePerdeu();
 	}
 }
 
@@ -203,6 +206,7 @@ void evento01(){
 	}
 	else if(escolha == 2){
 		gastaCombustivel(10);
+		atualizaStatusCS();
 	}
 }
 
@@ -246,6 +250,7 @@ void evento03(){
     }
     else if(escolha == 2){
 		gastaCombustivel(10);
+		atualizaStatusCS();
 	}
     
 }
