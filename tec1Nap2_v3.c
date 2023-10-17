@@ -6,7 +6,7 @@
 
 // Declaração das funções
 void mostraLinha();
-int verificaEscolha(int numeroEscolhas);
+int verificaEscolha(int numeroMinimo, int numeroMaximo);
 void exibeStatusAtual();
 void atualizaStatusCS();
 void vocePerdeu();
@@ -62,8 +62,9 @@ void mostraLinha(){
 }
 
 // Função pra pedir as escolhas do usuário no decorrer do RPG
-// Parâmetro "numeroEscolhas" define até que número será aceito como opção válida 
-int verificaEscolha(int numeroEscolhas){
+// Parâmetro "numeroMinimo" define menor número aceito como opção válida 
+// Parâmetro "numeroMaximo" define maior número aceito como opção válida
+int verificaEscolha(int numeroMinimo, int numeroMaximo){
 	int escolha;
 	
 	// Solicita uma escolha ao usuário
@@ -73,13 +74,14 @@ int verificaEscolha(int numeroEscolhas){
 	// Verifica se é uma opção válida
 	// Caso seja inválida pede novamente até uma opção válida ser inserida
 	// Caso seja válida retorna a escolha
-	if((escolha < 0) || (escolha > numeroEscolhas)){
+	if((escolha < numeroMinimo) || (escolha > numeroMaximo)){
 		do{
 			printf("Opção inválida! Tente Novamente. \n");
 			printf("Sua escolha: ");
 			scanf("%d", &escolha);
-		}while((escolha < 1) || (escolha > numeroEscolhas));
+		}while((escolha < numeroMinimo) || (escolha > numeroMaximo));
 	}
+	mostraLinha();
 	return escolha;
 }
 
@@ -113,9 +115,9 @@ void atualizaStatusCS(){
 	}
 	else{
 		mostraLinha();
-		printf("SEU COMBUSTÍVEL ACABOU! \n");
-		mostraLinha();
-		vocePerdeu();
+			printf("SEU COMBUSTÍVEL ACABOU! \n");
+			mostraLinha();
+			vocePerdeu();
 	}
 }
 
@@ -132,16 +134,18 @@ void vocePerdeu(){
 	printf("Deseja jogar novamente? \n");
 	printf("Não [0] \n");
 	printf("Sim [1] \n");
-	jogar = verificaEscolha(1);
+	jogar = verificaEscolha(0, 1);
 	sondas = 5;
 	combustivel = 100;
 	
 }
 
-//
+// Função para gastar combustível
 void gastaCombustivel(int gasto){
 	combustivel -= gasto;
+	atualizaStatusCS();
 }
+
 // Função para exibir uma contextualização inicial e um tutorial simples
 void tutorial(){
 	
@@ -179,13 +183,12 @@ void evento01(){
 	do{
 		exibeStatusAtual();
 		printf("Você observa o planeta e começa a calcular qual a melhor decisão: \n");
-		printf("0) Pousar nesse Planeta. \n");
-		printf("1) Enviar uma sonda para obter mais informações. \n");
-		printf("2) Seguir a viagem e procurar por outro planeta. \n");
-		escolha = verificaEscolha(2);
+		printf("1) Pousar nesse Planeta. \n");
+		printf("2) Enviar uma sonda para obter mais informações. \n");
+		printf("3) Seguir a viagem e procurar por outro planeta. \n");
+		escolha = verificaEscolha(1, 3);
 
-		if(escolha == 1){
-			mostraLinha();
+		if(escolha == 2){
 			if(possuiSondas == 1){
 				printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
 				sondas -= 1;
@@ -200,16 +203,15 @@ void evento01(){
 				printf("Você não tem mais sondas disponíveis! \n");
 			}
 		}
-	}while(escolha == 1);
+	}while(escolha == 2);
 	if(escolha == 0){
 		printf("A nave pousa no planeta e descongela os tripulantes. \n");
 		printf("No momento em que eles saem para fora da nave todos começam \n");
 		printf("a se sentirem asfixiados ou intoxicados e nenhum sobrevive. \n");
 		vocePerdeu();
 	}
-	else if(escolha == 2){
+	else if(escolha == 3){
 		gastaCombustivel(10);
-		atualizaStatusCS();
 	}
 }
 
@@ -224,15 +226,15 @@ void evento02(){
 	exibeStatusAtual();
 	printf("Tome uma decisão urgente! Você sente quantidade massiva de processamento sendo \n");
 	printf("utilizado para esse dilema. \n");
-	printf("0) Ignorar o aviso e seguir em frente. \n");
-	printf("1) Utilizar outro caminho e gastar +10%% de combustível. \n");
-	escolha = verificaEscolha(1);
+	printf("1) Ignorar o aviso e seguir em frente. \n");
+	printf("2) Utilizar outro caminho e gastar +10%% de combustível. \n");
+	escolha = verificaEscolha(1, 2);
 	
-	if(escolha == 0){
+	if(escolha == 1){
 		printf("Você ignora os aviso e segue em frente... \n");
 		printf("PÉSSIMA IDEIA, os asteróides eram reais!!! \n");
 		
-		// Inicializo o randomizador com o horário do sistema como seed
+		// Inicializo o randomizador com o horário atual do sistema como seed
 		srand(time(NULL));
 		
 		// Variável que decide se sobrevive aos asteróides 50% de chance de sobreviver
@@ -253,12 +255,11 @@ void evento02(){
 			printf("desse perigo. Ufa, foi por pouco! \n");
 		}
 	}
-	else if(escolha == 1){
+	else if(escolha == 2){
 		printf("Após seu processador chegar no limite de temperatura a conclusão foi \n");
 		printf("que o melhor a se fazer é dar a volta em segurança e respeitar \n");
-		printf("os avisos. \n");
+		printf("os avisos. ");
 		gastaCombustivel(10);
-		atualizaStatusCS();
 	}
 	
 }
@@ -271,11 +272,11 @@ void evento03(){
   do{
     exibeStatusAtual();
     printf("Você analisa a situação e começa a calcular qual a melhor decisão: \n");
-    printf("0) Pousar nesse Planeta. \n");
-    printf("1) Enviar uma sonda para obter mais informações. \n");
-    printf("2) Seguir a viagem e procurar por outro planeta. \n");
-    escolha = verificaEscolha(2);
-    if(escolha == 1){
+    printf("1) Pousar nesse Planeta. \n");
+    printf("2) Enviar uma sonda para obter mais informações. \n");
+    printf("3) Seguir a viagem e procurar por outro planeta. \n");
+    escolha = verificaEscolha(1, 3);
+    if(escolha == 2){
 	    if(possuiSondas == 1){
 	      printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
 	      sondas -= 1;
@@ -289,16 +290,15 @@ void evento03(){
 	      printf("Você não tem mais sondas disponíveis! \n");
     	}
     }
-	}while (escolha == 1);
+	}while (escolha == 2);
   
-	if(escolha == 0){
+	if(escolha == 1){
     	printf("A nave pousa no planeta e descongela os tripulantes. \n");
     	printf("No momento do pouso um onda gigantesca atinge a nave e todos os tripulantes morrem \n");
     	vocePerdeu();
     }
-    else if(escolha == 2){
+    else if(escolha == 3){
 		gastaCombustivel(10);
-		atualizaStatusCS();
 	}
     
 }
