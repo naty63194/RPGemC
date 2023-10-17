@@ -12,6 +12,7 @@ void atualizaStatusCS();
 void vocePerdeu();
 void voceGanhou();
 void gastaCombustivel();
+void navegando()
 void tutorial();
 void evento01();
 void evento02();
@@ -149,7 +150,7 @@ void vocePerdeu(){
 	
 }
 
-//
+// Exibe tela de vitória + jogar novamente
 void voceGanhou(){
 	ganhou = 1;
 	mostraLinha();
@@ -174,6 +175,162 @@ void voceGanhou(){
 void gastaCombustivel(int gasto){
 	combustivel -= gasto;
 	atualizaStatusCS();
+}
+
+// Função para tela de carregamento entre viagens
+void navegando(){
+	int  c;
+	printf("NAVEGANDO");
+	for (c = 0; c < 3; c++){
+		sleep(1);
+		printf(".");
+		sleep(1);
+	}
+	printf("\n");
+	system("cls");
+	printf("           @@@@ \n");
+	printf("           @@@@@@ \n");
+	printf("           @@@@@@@@ \n");
+	printf("      ...   @@@@@@@ \n");
+	printf("   .......@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ........@@...........@@@.....@@@@@@@@ \n");
+	printf(" .........@@..........@...@...@@@@@@@@@@@ \n");
+	printf("  ........@@...........@@@.....@@@@@@@@ \n");
+	printf("   .......@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ....  @@@@@@@ \n");
+	printf("           @@@@@@@@ \n");
+	printf("           @@@@@@ \n");
+	printf("           @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 2
+	printf("             @@@@ \n");
+	printf("             @@@@@@ \n");
+	printf("             @@@@@@@@ \n");
+	printf("      .....   @@@@@@@ \n");
+	printf("   .........@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ..........@@...........@@@.....@@@@@@@@ \n");
+	printf(" ...........@@..........@...@...@@@@@@@@@@@ \n");
+	printf("  ..........@@...........@@@.....@@@@@@@@ \n");
+	printf("   .........@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ......  @@@@@@@ \n");
+	printf("             @@@@@@@@ \n");
+	printf("             @@@@@@ \n");
+	printf("             @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 4
+	printf("                 @@@@ \n");
+	printf("                 @@@@@@ \n");
+	printf("                 @@@@@@@@ \n");
+	printf("      .........   @@@@@@@ \n");
+	printf("   .............@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ..............@@...........@@@.....@@@@@@@@ \n");
+	printf(" ...............@@..........@...@...@@@@@@@@@@@ \n");
+	printf("  ..............@@...........@@@.....@@@@@@@@ \n");
+	printf("   .............@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ..........  @@@@@@@ \n");
+	printf("                 @@@@@@@@ \n");
+	printf("                 @@@@@@ \n");
+	printf("                 @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 6
+	printf("                       @@@@ \n");
+	printf("                       @@@@@@ \n");
+	printf("                       @@@@@@@@ \n");
+	printf("      ...............   @@@@@@@ \n");
+	printf("   ...................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ....................@@...........@@@.....@@@@@@@@ \n");
+	printf(" .....................@@..........@...@...@@@@@@@@@@@ \n");
+	printf("  ....................@@...........@@@.....@@@@@@@@ \n");
+	printf("   ...................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ................  @@@@@@@ \n");
+	printf("                       @@@@@@@@ \n");
+	printf("                       @@@@@@ \n");
+	printf("                       @@@@ \n");
+	sleep(1);
+	system("cls");
+	//8
+	printf("                               @@@@ \n");
+	printf("                               @@@@@@ \n");
+	printf("                               @@@@@@@@ \n");
+	printf("      .......................   @@@@@@@ \n");
+	printf("   ...........................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ............................@@...........@@@.....@@@@@@@@ \n");
+	printf(" .............................@@..........@...@...@@@@@@@@@@@ \n");
+	printf("  ............................@@...........@@@.....@@@@@@@@ \n");
+	printf("   ...........................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ........................  @@@@@@@ \n");
+	printf("                               @@@@@@@@ \n");
+	printf("                               @@@@@@ \n");
+	printf("                               @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 10
+	printf("                                         @@@@ \n");
+	printf("                                         @@@@@@ \n");
+	printf("                                         @@@@@@@@ \n");
+	printf("      .................................   @@@@@@@ \n");
+	printf("   .....................................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("  ......................................@@...........@@@.....@@@@@@@ \n");
+	printf(" .......................................@@..........@...@...@@@@@@@@ \n");
+	printf("  ......................................@@...........@@@.....@@@@@@@ \n");
+	printf("   .....................................@@@@@@@@@@@@@@@@@@@@@@@@@@ \n");
+	printf("      ..................................  @@@@@@@ \n");
+	printf("                                         @@@@@@@@ \n");
+	printf("                                         @@@@@@ \n");
+	printf("                                         @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 12
+	printf("                                                     @@@@ \n");
+	printf("                                                     @@@@@@ \n");
+	printf("                                                     @@@@@@@@ \n");
+	printf("      .............................................   @@@@@@@ \n");
+	printf("   .................................................@@@@@@@@@@@@@@@@ \n");
+	printf("  ..................................................@@...........@@@ \n");
+	printf(" ...................................................@@..........@... \n");
+	printf("  ..................................................@@...........@@@ \n");
+	printf("   .................................................@@@@@@@@@@@@@@@@ \n");
+	printf("      ..............................................  @@@@@@@ \n");
+	printf("                                                     @@@@@@@@ \n");
+	printf("                                                     @@@@@@ \n");
+	printf("                                                     @@@@ \n");
+	sleep(1);
+	system("cls");
+	// 14
+	printf("                                                                   @ \n");
+	printf("                                                                   @ \n");
+	printf("                                                                   @ \n");
+	printf("      ...........................................................    \n");
+	printf("   ...............................................................@@ \n");
+	printf("  ................................................................@@ \n");
+	printf(" .................................................................@@ \n");
+	printf("  ................................................................@@ \n");
+	printf("   ...............................................................@@ \n");
+	printf("      ............................................................   \n");
+	printf("                                                                   @ \n");
+	printf("                                                                   @ \n");
+	printf("                                                                   @@ \n");
+	sleep(1);
+	system("cls");
+	// 16
+	printf("                                                                     \n");
+	printf("                                                                     \n");
+	printf("                                                                     \n");
+	printf("                      .............................................. \n");
+	printf("                   ................................................. \n");
+	printf("                  .................................................. \n");
+	printf("                 ................................................... \n");
+	printf("                  .................................................. \n");
+	printf("                   ................................................. \n");
+	printf("                      .............................................. \n");
+	printf("                                                                     \n");
+	printf("                                                                     \n");
+	printf("                                                                     \n");
+	sleep(1);
+	system("cls");
 }
 
 // Função para exibir uma contextualização inicial e um tutorial simples
@@ -204,6 +361,7 @@ void evento01(){
 	printf("cada vez mais do sistema solar até o sol se tornar apenas mais um ponto \n");
 	printf("como qualquer outra estrela na imensidão do espaço sideral. \n");
 	printf("\n");
+	navegando();
 	printf("Após um bom tempo de viagem o primeiro candidato a 'lar' surge. \n");
 	printf("O planeta vermelho parece ser coberto por uma névoa em toda sua superfície, \n");
 	printf("é possível observar ao seu redor anéis de gelo e rochas, assim como uma lua próxima com \n");
@@ -470,8 +628,8 @@ void evento06(){
 	if (escolha == 1){
 		printf("O pouso foi bem sucedido e o descogelamento da tripulação foi realizado corretamente \n");
 		printf("Os seres humanos conseguiram se estabelecer e conviver harmonicamente com a espécie nativa\n");
-    printf("Missão concluída com êxito!!! Parabéns!!\n");
-    voceGanhou();
+    	printf("Missão concluída com êxito!!! Parabéns!!\n");
+    	voceGanhou();
     }
 	else if (escolha == 3){
     mostraLinha();
