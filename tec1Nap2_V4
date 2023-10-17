@@ -43,7 +43,12 @@ void main(){
 	//Exibe o tutorial e um texto base para iniciar o jogo
 	tutorial();
 	mostraLinha();
+	printf("Aperte enter para começar...");
+	getchar();
 	
+	// Tela de carregamento antes do jogo começar
+	navegando();
+
 	// Loop do jogo
 	while (jogar == 1){
 		perdeu = 0;
