@@ -12,7 +12,7 @@ void atualizaStatusCS();
 void vocePerdeu();
 void voceGanhou();
 void gastaCombustivel();
-void navegando()
+void navegando();
 void tutorial();
 void evento01();
 void evento02();
