@@ -631,9 +631,9 @@ void evento06(){
 	do{
 	    exibeStatusAtual();
 	    printf("Você analisa a situação e começa a calcular qual a melhor decisão: \n");
-	    printf("1) Pousar nesse Planeta. \n");
-	    printf("2) Enviar uma sonda para obter mais informações. \n");
-	    printf("3) Seguir a viagem e procurar por outro planeta. \n");
+	    printf("[1] - Pousar nesse Planeta. \n");
+	    printf("[2] - Enviar uma sonda para obter mais informações. \n");
+	    printf("[3] - Seguir a viagem e procurar por outro planeta. \n");
 	    escolha = verificaEscolha(1, 3);
 	    
 	    if (escolha == 2){
@@ -653,13 +653,13 @@ void evento06(){
     }while (escolha == 2);
 	if (escolha == 1){
 		printf("O pouso foi bem sucedido e o descogelamento da tripulação foi realizado corretamente \n");
-		printf("Os seres humanos conseguiram se estabelecer e conviver harmonicamente com a espécie nativa\n");
+		printf("Os seres humanos conseguiram se estabelecer e conviver harmonicamente com a espécie nativa \n");
     	printf("Missão concluída com êxito!!! Parabéns!!\n");
     	voceGanhou();
     }
 	else if (escolha == 3){
     gastaCombustivel(10);
-    printf("A nave foi exposta a radiação da explsão de uma estrela próxima.\n");
+    printf("A nave foi exposta a radiação da explosão de uma estrela próxima.\n");
     printf("ALERTA!ALERTA!ALERTA!\n");
     printf("SISTEMAS DANIFICADOS!\n");
     printf("Os danos no sistema foram irreparáveis e afetou o sistema de criogênese \n");
@@ -673,13 +673,12 @@ void evento07(){
 	printf("Você utilizou os dados da sua programação para enviar uma mensagem para o objeto não identificado. \n");
     printf("Sua mensagem contém a natureza da sua missão e seus objetivos pacíficos. \n");
     printf("O objeto envia a seguinte resposta para os seus sistemas: \n");
-    printf("EVA, analisamos o seu sistema e não detectamos ameaça e como forma de ajudar na sua missão, escolha uma das opções: \n");
+    printf("EVA, analisamos o seu sistema e não detectamos ameaça então vamos te ajudar na sua missão. \n");
+	exibeStatusAtual();
+	printf("Analise os dados e escolha uma das opções.\n");
 	printf("1) +20%% de combustível extra \n");
 	printf("2) +2 sondas \n");
 	printf("3) A localização de um planeta possivelmente habitável para a espécie humana \n");
-	printf("Fim da mensagem... \n");
-	exibeStatusAtual();
-	printf("Analise os dados e escolha uma das opções.\n");
     escolha = verificaEscolha(1, 3);
 
 	// Combustível extra
@@ -693,22 +692,23 @@ void evento07(){
 	// Sondas extras
 	else if (escolha == 2){
     	sondas += 2;
+    	atualizaStatusCS();
     	printf("Otima escolha!! \n");
     	printf("Com essa opção a sua nave ganha 2 sondas adicionais. \n ");
     	printf("para explorar outros planetas a serem descobertos \n");
 		evento09();
-  }
-  else if (escolha == 3){
-    gastaCombustivel(10);
-    evento08();
+	}
+	else if (escolha == 3){
+    	gastaCombustivel(10);
+    	evento08();
   }
 }
 
 // Evento 08:
 void evento08(){
 	// Texto Base
-    printf("Olhando através dos sensores,foi possívil visualizar e detecta um planeta majestoso\n"); 
-    printf("com um horizonte verdejante e oceanos reluzantes, além de possuir uma estrela semelhante do sol\n");
+    printf("Olhando através dos sensores,foi possívil visualizar e detecta um planeta majestoso \n"); 
+    printf("com um horizonte verdejante e oceanos reluzantes, além de possuir uma estrela semelhante do sol \n");
 	do{
     	exibeStatusAtual();
         printf("Diante dessa descoberta, escolha qual ação você irá realizar \n");
@@ -716,27 +716,28 @@ void evento08(){
         printf("[02] - Investiga com uma sonda \n");
         printf("[03] - Continuar a viagem \n");
         escolha = verificaEscolha(1, 3);
-        // Pousa no planeta
-        if (escolha == 1){
-            printf("MISSION SUCCESSFULL\n");
-            printf("O pouso foi feito com segurança \n");
-            printf("E o processso de adapatação foi feito com sucesso \n");
-            printf("Parabéns, sua missão foi concluída com sucesso\n");
-            voceGanhou();
-        }
         // Investigação da sonda 
-        else if (escolha == 2){
-            printf("Dados recebidos pela sonda: \n");
+        if (escolha == 2){
+            sondas -= 1;
+            atualizaStatusCS();
+			printf("Dados recebidos pela sonda: \n");
             printf("O planeta é coberto pora florestas exuberantes \n");
             printf("com uma variadade de vida vegetal e animal. \n");
             printf("A atmosfera é composta por Oxigênio e Nitrogênio para a vida humana. \n");
-        }
-        // Continuar a viagem
-        else if (escolha == 3){
-            evento11();
-        }
-
-    } while (escolha == 2);
+    	}
+    }while (escolha == 2);
+    // Pousa no planeta
+    if (escolha == 1){
+        printf("MISSION SUCCESSFULL\n");
+        printf("O pouso foi feito com segurança \n");
+        printf("E o processso de adapatação foi feito com sucesso \n");
+        printf("Parabéns, sua missão foi concluída com sucesso\n");
+        voceGanhou();
+	}
+	// Continuar a viagem
+	else if (escolha == 3){
+        evento11();
+    }
 }
 
 // Evento 09:
@@ -841,12 +842,12 @@ void evento11(){
 	        printf("Infelizmente as sondas não obtiveram sucesso...\n");
 	        atualizaStatusCS();
 	    }
-	    // Usa 10% de combustível para transmissão de sinal
-	    else if (escolha == 2){
-	        gastaCombustivel(10);
-	    }
     }while (escolha == 1);
-	evento12();
+	// Usa 10% de combustível para transmissão de sinal
+	if (escolha == 2){
+	    gastaCombustivel(10);
+	    evento12();
+	    }
 }
 
 // Evento 12:
@@ -865,7 +866,7 @@ void evento12(){
     printf("\n");
     printf("Sob esse cenário, escolha o caminho que você deseja seguir: \n");
     printf("[1] - Continuar no planeta e sobreviver com uma população reduzida. \n");
-    printf("[2] - Abaster a nave e contunar a missão em buscar de outro planeta. \n");
+    printf("[2] - Abaster a nave e continuar a missão em buscar de outro planeta. \n");
     escolha = verificaEscolha(1, 2);
     // Continuar no planeta
     if (escolha == 1){
@@ -875,8 +876,7 @@ void evento12(){
     }
     // Continuar a missão
     else if (escolha == 2){
-        combustivel += 10;
-		navegando();
+        combustivel = 100;
     }
 }
 
@@ -971,4 +971,3 @@ void evento14(){
 		
 	}
 }
-
