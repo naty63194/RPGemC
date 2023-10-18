@@ -8,7 +8,7 @@ void evento13(){
     printf("[01] - Utilizar as sondas para atacar as naves \n ");
     printf("[02] - Se esconder da tropa da cratera de um asteroide \n");
     printf("[03] - Fugir para o planeta mais próximo planeta \n");
-    escolha = verificaEscolha(3);
+    escolha = verificaEscolha(1,3);
     // condição 01 que vai resultado em game over
     if ( escolha ==1){
         printf("MISSION FAILED \n");
