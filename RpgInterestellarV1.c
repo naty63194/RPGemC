@@ -91,9 +91,9 @@ void main(){
 
 
 //Definição das funções
-// Função que dá um printf em 70 "=" para ajudar na divisão de sessões de textos
+// Função que dá um printf em 90 "=" para ajudar na divisão de sessões de textos
 void mostraLinha(){
-	printf("======================================================================\n");
+	printf("==========================================================================================\n");
 }
 
 // Função pra pedir as escolhas do usuário no decorrer do RPG
@@ -857,7 +857,7 @@ void evento12(){
     printf("Uma nave espacial amigável receptou o sinal\n");
     printf("Salvando a sua tripulação, levando a nave para o seu planeta natal \n");
     printf("\n");
-    printf("Nesse planeta as condicões de vida para os seres humanos são difíceis \n ");
+    printf("Nesse planeta as condicões de vida para os seres humanos são difíceis \n");
     printf("A atmosfera não é compatível, devido a instabilidade dos gases Oxigênio \n");
     printf("A pouca da formação de ozônio na atmosfera, No entanto, as duas nacões \n");
     printf("Vão compartilhar suas tecnologias para tentar reverter o cenário do planeta \n");
