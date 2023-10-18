@@ -543,7 +543,7 @@ void evento04(){
 			printf("A nave inicia uma rota rente ao horizonte de eventos. Seus receptores de imagem \n");
 			printf("capturam a beleza do fenômeno em uma fotografia e definem como 'majestosa' a \n");
 			printf("composição observada. \n");
-			printf("A nave acelera e graças ao impulso gerado pela rotação do campo gravital do corpo \n");
+			printf("A nave acelera e graças ao impulso gerado pela rotação do campo gravitacional do corpo \n");
 			printf("celeste, quase que no mesmo instante chegamos no próximo planeta. \n");
 			evento06();
 		}
@@ -596,8 +596,8 @@ void evento04(){
 // Evento 05: Upgrade
 void evento05(){
     // Texto base
-	printf("Após tanto tempo de viagem surge a oportunidade de um upgrade");
-    printf("Com os conhecimentos adqueridos pela IA EVA nesse meio tempo \n");
+	printf("Após tanto tempo de viagem surge a oportunidade de um upgrade \n");
+    printf("com os conhecimentos adqueridos pela IA EVA nesse meio tempo \n");
     exibeStatusAtual();
 	printf("Escolha o upgrade que desejar: \n");
     printf("1) +2 unidades de sondas extras \n");
@@ -614,10 +614,10 @@ void evento05(){
 	}
     // Combustível
 	else if (escolha == 2){
-        combustivel += 20;
+        combustivel += 10;
 		printf("Otima escolha!! \n");
-        printf("Com essa opção a sua nave ganha 2 sondas adicionais \n ");
-        printf("Para explorar outros planetas a serem descobertos \n");
+        printf("Com essa opção a sua nave ganha 10%% de combustível \n ");
+        printf("para manter exploraração \n");
         
 	}
 	evento06();
@@ -662,7 +662,7 @@ void evento06(){
     printf("A nave foi exposta a radiação da explsão de uma estrela próxima.\n");
     printf("ALERTA!ALERTA!ALERTA!\n");
     printf("SISTEMAS DANIFICADOS!\n");
-    printf("Os danos no sistema foram inrreparáveis e afetou o sistema de criogênese \n");
+    printf("Os danos no sistema foram irreparáveis e afetou o sistema de criogênese \n");
     printf("Sua missão falhou pois todos os tripulantes morreram na nave. \n");
     vocePerdeu();
 	}
@@ -670,7 +670,7 @@ void evento06(){
 // Evento 07:
 void evento07(){
 	// Texto base
-	printf("Você utilizou os dados da sua programação para enviar uma mensagem para o objeto não identificado.");
+	printf("Você utilizou os dados da sua programação para enviar uma mensagem para o objeto não identificado. \n");
     printf("Sua mensagem contém a natureza da sua missão e seus objetivos pacíficos. \n");
     printf("O objeto envia a seguinte resposta para os seus sistemas: \n");
     printf("EVA, analisamos o seu sistema e não detectamos ameaça e como forma de ajudar na sua missão, escolha uma das opções: \n");
@@ -831,9 +831,9 @@ void evento11(){
 	    printf("Diante desse cenário você precisa decidir qual é a melhor\n");
 	    printf("decisão a ser tomada \n");
 	    printf("[01]- Mandar uma sonda para pedir ajuda, perdendo uma sonda \n");
-	    printf("[02]-  Transmitir um sinal de energia para o espaço na tentativa \n ");
-	    printf("de alguém aparecer para resgata-los, perdendo 10%% do combustível \n ");
-	    verificaEscolha(1, 2);
+	    printf("[02]- Transmitir um sinal de energia para o espaço na tentativa \n");
+	    printf("de alguém aparecer para resgata-los, perdendo 10%% do combustível \n");
+	    escolha = verificaEscolha(1, 2);
 	    
 	    // Usa uma sonda
 	    if (escolha == 1){
@@ -875,19 +875,19 @@ void evento12(){
     }
     // Continuar a missão
     else if (escolha == 2){
-        navegando();
+        combustivel += 10;
+		navegando();
     }
 }
 
 // Evento 13:
 void evento13(){
 	// Texto base
-    printf("Navegando pelo vasto espaço,acaba \n");
-    printf("Encontrando uma frota de naves de seres \n");
-    printf("Que caçam os seres humanos, fazendo \n");
-    printf("Os seres humanos como escravos \n");
-    printf("Sob esse perigo, escolha uma das opções abaixo \n ");
-    printf("[01] - Utilizar as sondas para atacar as naves \n ");
+    printf("Enquanto navegava pelo vasto espaço, encontrando uma frota de naves de seres \n");
+    printf("que caçam seres humanos, fazendo eles de escravos \n");
+    printf("\n");
+    printf("Sob esse perigo, escolha uma das opções abaixo \n");
+    printf("[01] - Utilizar as sondas para atacar as naves \n");
     printf("[02] - Se esconder da tropa na cratera de um asteroide \n");
     printf("[03] - Fugir para o planeta mais próximo\n");
     escolha = verificaEscolha(1,3);
@@ -900,8 +900,8 @@ void evento13(){
     }
     // Se esconder
     else if (escolha == 2){
-        printf("Seu esconderijo não foi descoberto\n ");
-        printf("Você conseguiu dispistar a tropa inimiga\n");
+        printf("Seu esconderijo não foi descoberto \n");
+        printf("Você conseguiu dispistar a tropa inimiga \n");
         printf("Continue a sua jornada. \n");
         evento14();
     }
@@ -919,7 +919,7 @@ void evento13(){
 // Evento 14:
 void evento14(){
 	// Texto base
-	printf("Você encontrou um planeta possivelmente habitável. n");
+	printf("Você encontrou um planeta possivelmente habitável. \n");
 	// Interação com o jogador
 	do{
 		exibeStatusAtual();
@@ -955,7 +955,7 @@ void evento14(){
 		escolha = verificaEscolha(1, 2);
 		if (escolha == 1){
 			printf("A espécie humana se multiplicou com o passar das gerações e \n");
-			printf("conseguiu se estabelecer em paz com a espécie nativa. ");
+			printf("conseguiu se estabelecer em paz com a espécie nativa. \n");
 			voceGanhou();
 		}
 		else if(escolha == 2){
@@ -971,3 +971,4 @@ void evento14(){
 		
 	}
 }
+
