@@ -917,7 +917,7 @@ void evento12(){
     }
 }
 
-// Evento 13: Encontor com inimigos
+// Evento 13: Encontro com inimigos
 void evento13(){
 	// Texto base
     printf("Enquanto navegava pelo vasto espaço, encontrando uma frota de naves de seres \n");
