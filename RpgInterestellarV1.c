@@ -55,7 +55,7 @@ void main(){
 	//Exibe o tutorial e um texto base para iniciar o jogo
 	tutorial();
 	mostraLinha();
-	printf("Aperte enter para começar...");
+	printf("Aperte \"enter\" para começar...");
 	getchar();
 	
 	// Tela de carregamento antes do jogo começar
@@ -364,17 +364,17 @@ void navegando(){
 // Função para exibir uma contextualização inicial e um tutorial simples
 void tutorial(){
 	
-	printf("Olá desbravador espacial!\n");
+	printf("Olá, desbravador espacial!\n");
 	printf("A Terra foi devastada pela ganância dos mais poderosos, não há mais água para todos \n");
 	printf("o clima é hostil por toda a superfície do planeta, desastres naturais são recorrentes \n");
-	printf("e uma onda de fome generalizada se espalhou pelas nações, os últimos cientistas se juntaram \n");
-	printf("para contruir a 'Arca', uma nave que levará os ultimos seres humanos \n");
+	printf("e uma onda de fome generalizada se espalhou pelas nações. Os últimos cientistas se juntaram \n");
+	printf("para contruir a \"Arca\", uma nave que levará os ultimos seres humanos \n");
 	printf("congelados em capsulas criogênicas para um novo planeta onde a raça humana \n");
 	printf("irá se reerguer e impedir sua extinção.\n");
 	printf("\n");
-	printf("Você será uma IA batizada de EVA que controlará essa nave e tomará todas as decisões \n");
-	printf("que vão decidir o futuro da humanidade, use sondas para explorar planetas pois \n");
-	printf("uma vez que você pousar em um planeta não será possível retornar. \n");
+	printf("Você será uma IA batizada de EVA, que controlará essa nave e tomará todas as decisões \n");
+	printf("que vão decidir o futuro da humanidade. Use sondas para explorar planetas pois, \n");
+	printf("uma vez que você pousar em um planeta, não será possível retornar. \n");
 	printf("Preste atenção no seu combustível, porque se ele chegar a zero...\n");
 	printf("bem... não deixe ele chegar a zero.\n");
 	printf("\n");
@@ -384,25 +384,27 @@ void tutorial(){
 // Evento 01: Encontro do primeiro planeta
 void evento01(){
 	// Texto base
-	printf("A Arca sai em viagem ao espaço, pouco depois o planeta Terra colapsa devido a \n");
-	printf("instabilidades em seu núcleo, enquanto observa a catástrofe você vai se afastando \n");
-	printf("cada vez mais do sistema solar até o sol se tornar apenas mais um ponto \n");
+	printf("A Arca sai em viagem ao espaço. Pouco depois, o planeta Terra colapsa devido a \n");
+	printf("instabilidades em seu núcleo. Enquanto observa a catástrofe, você vai se afastando \n");
+	printf("cada vez mais do sistema solar até o Sol se tornar apenas mais um ponto \n");
 	printf("como qualquer outra estrela na imensidão do espaço sideral. \n");
 	printf("\n");
-	printf("Após um bom tempo de viagem o primeiro candidato a 'lar' surge. \n");
-	printf("O planeta vermelho parece ser coberto por uma névoa em toda sua superfície, \n");
+	printf("Após um bom tempo de viagem, o primeiro candidato a 'lar' surge. \n");
+	printf("O planeta vermelho parece ser coberto por uma névoa em toda sua superfície e \n");
 	printf("é possível observar ao seu redor anéis de gelo e rochas, assim como uma lua próxima com \n");
-	printf("uma cratera massiva, provavelmente os anéis desse planeta são os destroços \n");
+	printf("uma cratera massiva. Provavelmente os anéis desse planeta são os destroços \n");
 	printf("do impacto que acertou seu satélite. \n");
+	
 	// Interação com o jogador
 	do{
 		exibeStatusAtual();
 		printf("Você observa o planeta e começa a calcular qual a melhor decisão: \n");
-		printf("1) Pousar nesse Planeta. \n");
-		printf("2) Enviar uma sonda para obter mais informações. \n");
-		printf("3) Seguir a viagem e procurar por outro planeta. \n");
+		printf("[1] - Pousar nesse Planeta. \n");
+		printf("[2] - Enviar uma sonda para obter mais informações. \n");
+		printf("[3] - Seguir a viagem e procurar por outro planeta. \n");
 		escolha = verificaEscolha(1, 3);
-
+		
+		// Envia sonda
 		if (escolha == 2){
 			if (possuiSondas == 1){
 				printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
@@ -419,12 +421,15 @@ void evento01(){
 			}
 		}
 	}while (escolha == 2);
+	
+	// Pousa
 	if (escolha == 1){
 		printf("A nave pousa no planeta e descongela os tripulantes. \n");
 		printf("No momento em que eles saem para fora da nave todos começam \n");
-		printf("a se sentirem asfixiados ou intoxicados e nenhum sobrevive. \n");
+		printf("a se sentirem asfixiados e intoxicados e nenhum sobrevive. \n");
 		vocePerdeu();
 	}
+	// Segue viagem 
 	else if (escolha == 3){
 		gastaCombustivel(10);
 	}
@@ -432,21 +437,22 @@ void evento01(){
 
 // Evento 02: Evento dos asteróides
 void evento02(){
-	//Texto base
+	// Texto base
 	printf("Após se afastar do último planeta, os radares da espaçonave detectam algo \n");
-	printf("estranho pela rota atual, possivelmente asteróides, porém, pode ser um alarme falso \n");
+	printf("estranho pela rota atual, possivelmente asteróides. No entanto, pode ser um alarme falso \n");
 	printf("que atrasará a viagem e consumirá mais recursos em caso de mudança de rota. \n");
 	
 	// Interação com o jogador
 	exibeStatusAtual();
 	printf("Tome uma decisão urgente! Você sente quantidade massiva de processamento sendo \n");
 	printf("utilizado para esse dilema. \n");
-	printf("1) Ignorar o aviso e seguir em frente. \n");
-	printf("2) Utilizar outro caminho e gastar +10%% de combustível. \n");
+	printf("[1] - Ignorar o aviso e seguir em frente. \n");
+	printf("[2] - Utilizar outro caminho e gastar +10%% de combustível. \n");
 	escolha = verificaEscolha(1, 2);
 	
+	// Ignora os avisos
 	if (escolha == 1){
-		printf("Você ignora os aviso e segue em frente... \n");
+		printf("Você ignora os avisos e segue em frente... \n");
 		printf("PÉSSIMA IDEIA, os asteróides eram reais!!! \n");
 		
 		// Randomizador com o horário atual do sistema como seed
@@ -458,20 +464,21 @@ void evento02(){
 		// Não sobrevive
 		if (consegue == 0){
 			printf("Você tenta desviar dos milhares de detritos pelo caminho mas é acertado \n");
-			printf("em cheio por um deles, logo em seguida a nave entra em colapso e explode \n");
+			printf("em cheio por um deles. Logo em seguida, a nave entra em colapso e explode \n");
 			vocePerdeu();
 		}
 		// Sobrevive
 		else if (consegue == 1){
-			printf("Vários corpos rochosos surgem em sua frente, com seu alto poder \n");
-			printf("de processamento você realiza todos os calculos de desvios instântaneamente, \n");
-			printf("alguns deles causam arranhões na parte externa, mas nenhum resulta \n");
+			printf("Vários corpos rochosos surgem em sua frente. \n");
+			printf("Com seu alto poder de processamento, você realiza todos os calculos de desvios instantaneamente.\n");
+			printf("Alguns deles causam arranhões na parte externa, mas nenhum resulta \n");
 			printf("em danos críticos aos seus sistemas e a nave sai quase que ilesa \n");
 			printf("desse perigo. Ufa, foi por pouco! \n");
 		}
 	}
+	// Utiliza outro caminho
 	else if (escolha == 2){
-		printf("Após seu processador chegar no limite de temperatura a conclusão foi \n");
+		printf("Após seu processador chegar no limite de temperatura, a conclusão foi \n");
 		printf("que o melhor a se fazer é dar a volta em segurança e respeitar \n");
 		printf("os avisos. \n");
 		gastaCombustivel(10);
@@ -481,17 +488,21 @@ void evento02(){
 
 //Evento03: próximo planeta 
 void evento03(){
-  printf("Viajando pelo espaço profundo em direção a um destino desconhecido.\n");
-  printf("Você detecta um planeta gigante, coberto por nuvens brancas e envolto por um azul profundo e cintilante.\n");
+  // Texto base
+  printf("Viajando pelo espaço profundo em direção a um destino desconhecido,\n");
+  printf("você detecta um planeta gigante, coberto por nuvens brancas e envolto por um azul profundo e cintilante.\n");
   
+  //Interação com o jogador
   do{
     exibeStatusAtual();
     printf("Você analisa a situação e começa a calcular qual a melhor decisão: \n");
-    printf("1) Pousar nesse Planeta. \n");
-    printf("2) Enviar uma sonda para obter mais informações. \n");
-    printf("3) Seguir a viagem e procurar por outro planeta. \n");
+    printf("[1] - Pousar nesse Planeta. \n");
+    printf("[2] - Enviar uma sonda para obter mais informações. \n");
+    printf("[3] - Seguir a viagem e procurar por outro planeta. \n");
     escolha = verificaEscolha(1, 3);
-    if (escolha == 2){
+    
+    // Envia sonda
+	if (escolha == 2){
 	    if (possuiSondas == 1){
 	      printf("Você envia uma sonda para coletar mais dados acerca do planeta. (-1 sonda) \n");
 	      sondas -= 1;
@@ -506,12 +517,14 @@ void evento03(){
     	}
     }
 	}while (escolha == 2);
-  
+	
+	// Pousa
 	if (escolha == 1){
     	printf("A nave pousa no planeta e descongela os tripulantes. \n");
-    	printf("No momento do pouso um onda gigantesca atinge a nave e todos os tripulantes morrem \n");
+    	printf("No momento do pouso, uma onda gigantesca atinge a nave e todos os tripulantes morrem \n");
     	vocePerdeu();
     }
+    // Segue viagem
     else if (escolha == 3){
 		gastaCombustivel(10);
 	}
@@ -520,17 +533,21 @@ void evento03(){
 
 // Evento04: Evento do buraco negro
 void evento04(){
-	printf("A busca continua, você não encontra planetas nas redondezas para explorar, será uma\n");
-	printf("longa viagem até o mais próximo de onde estamos no momento, isso custará mais combustível... \n");
-	printf("Porém, subitamente surge uma ideia em sua rede neural: Arriscar passar próximo ao horizonte \n");
-	printf("de eventos de um buraco negro e pegar impulso suficiente para chegar no próximo destino sem o \n");
-	printf("uso de combustível extra. Existe o risco da nave se aproximar além do permitido e ser sugada \n");
-	printf("para dentro dele. \n");
+	// Texto base
+	printf("A busca continua. \n");
+	printf("Você não encontra planetas nas redondezas para explorar, será uma\n");
+	printf("longa viagem até o mais próximo de onde estamos no momento e isso custará mais combustível... \n");
+	printf("Porém, subitamente, surge uma ideia em sua rede neural: \n");
+	printf("Arriscar passar próximo ao horizonte de eventos de um buraco negro e pegar impulso suficiente \n");
+	printf("para chegar no próximo destino sem o uso de combustível extra. \n");
+	printf("Entretanto, existe o risco da nave se aproximar além do permitido e ser sugada para dentro dele. \n");
 	exibeStatusAtual();
+	// Interação com o jogador
 	printf("Parece arriscado, mas cabe a você decidir o melhor: \n");
-	printf("1) Seguir o caminho normal e gastar 10%% de combustível. \n");
-	printf("2) Arriscar o impulso e evitar o consumo extra. \n");
+	printf("[1] - Seguir o caminho normal e gastar 10%% de combustível. \n");
+	printf("[2] - Arriscar o impulso e evitar o consumo extra. \n");
 	escolha = verificaEscolha(1, 2);
+	// Arrisca o impulso
 	if (escolha == 2){
 		// Randomizador com o horário atual do sistema como seed
 		srand(time(NULL));
@@ -539,7 +556,7 @@ void evento04(){
 		int consegue = rand() % 10;
 		
 		// Consegue
-		if (consegue == 0){
+		if (consegue == 1){
 			printf("A nave inicia uma rota rente ao horizonte de eventos. Seus receptores de imagem \n");
 			printf("capturam a beleza do fenômeno em uma fotografia e definem como 'majestosa' a \n");
 			printf("composição observada. \n");
@@ -549,14 +566,16 @@ void evento04(){
 		}
 		// Não consegue
 		else{
+			// Texto base
 			printf("A atração gravitacional foi mais forte e a nave não consegue passar, \n");
-			printf("ela é engolida e transportada para uma parte desconhecida do \n");
-			printf("universo. \n");
+			printf("sendo engolida e transportada para uma parte desconhecida do universo. \n");
+			printf("\n");
 			printf("O sistema de navegação e motores são danificados e a nave fica a deriva até que \n");
-			printf("subitamente ela para, ela foi interceptada por um raio trator \n");
+			printf("subitamente ela para: ela foi interceptada por um raio trator \n");
 			printf("que aparenta estar vindo de um objeto estranho. \n");
 			printf("O objeto parece tentar se comunicar, você realiza uma busca em seu banco de dados sobre \n");
 			printf("criptografia e encontra uma forma de traduzir a mensagem: 'Não resista ou sofra as consequências'. \n");
+			
 			// Interação com o jogador
 			do{
 				exibeStatusAtual();
@@ -565,7 +584,8 @@ void evento04(){
 				printf("2) Tentar se comunicar pedindo mais informações. \n");
 				printf("3) Disparar uma sonda no objeto para tentar afugentá-lo. \n");
 				escolha = verificaEscolha(1, 3);
-		
+				
+				// Dispara uma sonda
 				if (escolha == 3){
 					if (possuiSondas == 1){
 						printf("A sonda e disparada em direção ao objeto, porém ao colidir com ele nada acontece... \n");
@@ -578,6 +598,7 @@ void evento04(){
 					}
 				}
 			}while (escolha == 3);
+			// Tenta escapar
 			if (escolha == 1){
 				printf("Os motores estão danificados! Os esforços são em vão. \n");
 				printf("Ainda sim, ficou visível sua resistência. \n");
@@ -587,6 +608,7 @@ void evento04(){
 			}
 		}
 	}
+	// Segue o caminho normal
 	else if (escolha == 1){
 		gastaCombustivel(10);
 		evento05();
@@ -599,9 +621,10 @@ void evento05(){
 	printf("Após tanto tempo de viagem surge a oportunidade de um upgrade \n");
     printf("com os conhecimentos adqueridos pela IA EVA nesse meio tempo \n");
     exibeStatusAtual();
+	// Interação com o jogador
 	printf("Escolha o upgrade que desejar: \n");
-    printf("1) +2 unidades de sondas extras \n");
-    printf("2) +10%% de combustível extra \n");
+    printf("[1] - +2 unidades de sondas extras \n");
+    printf("[2] +10%% de combustível extra \n");
     escolha = verificaEscolha(1, 2);
     
 	// Sondas extras
@@ -625,9 +648,12 @@ void evento05(){
 
 //Evento06: próximo planeta 
 void evento06(){
+	// Texto base
 	printf("A nave sobrevoa um planeta com anéis e cores semelhantes a da terra, \n");
 	printf("até que recebe uma mensagem pelo sistema de comunicações. \n");
 	printf("A mensagem é uma recepção para as espécies pacíficas. \n");
+	
+	// Interação com jogador
 	do{
 	    exibeStatusAtual();
 	    printf("Você analisa a situação e começa a calcular qual a melhor decisão: \n");
